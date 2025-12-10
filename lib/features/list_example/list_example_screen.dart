@@ -31,13 +31,15 @@ class _ListExampleScreenState extends State<ListExampleScreen> {
   }
 
   void _scrollListener() {
-    // bool showScrollintToTopButton = scrollController.offset > 100;
-    // if (showScrollintToTopButton != _showScrollintToTopButton) {
+    //bool showScrollintToTopButton = scrollController.offset > 100;
+    //if (showScrollintToTopButton != _showScrollintToTopButton) {
+    //  setState(() {
+    //    _showScrollintToTopButton = showScrollintToTopButton;
+    //  });
+    //}
     setState(() {
       _showScrollintToTopButton = scrollController.offset > 100;
-      //     _showScrollintToTopButton = showScrollintToTopButton;
     });
-    // }
   }
 
   @override

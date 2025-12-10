@@ -162,7 +162,7 @@ class _AnimationScreenState extends State<AnimationScreen>
   // Calcular números primos en un isolate (no bloquea la animación)
   Future<void> _calculatePrimesInIsolate() async {
     setState(() {
-      _isCalculating = true;
+      //_isCalculating = true;
       _result = 'Calculando en Isolate...';
     });
 
@@ -171,7 +171,7 @@ class _AnimationScreenState extends State<AnimationScreen>
     stopwatch.stop();
 
     setState(() {
-      _isCalculating = false;
+      //_isCalculating = false;
       _result =
           'Encontrados ${primes.length} números primos\n'
           'Tiempo: ${stopwatch.elapsedMilliseconds}ms\n'

@@ -24,25 +24,25 @@ class _PhotoListState extends State<PhotoList> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.grey[100],
-      //child: SingleChildScrollView(
-      //  controller: widget.scrollController,
-      //  child: Column(
-      //    children: [
-      //      const SizedBox(height: 8),
-      //      ...widget.photoModels.map(
-      //        (photoModel) => PhotoListItem(photoModel: photoModel),
-      //      ),
-      //      const SizedBox(height: 8),
-      //    ],
-      //  ),
-      //),
-      child: ListView.builder(
+      child: SingleChildScrollView(
         controller: widget.scrollController,
-        padding: const EdgeInsets.all(8),
-        itemCount: widget.photoModels.length,
-        itemBuilder: (context, index) =>
-            PhotoListItem(photoModel: widget.photoModels[index]),
+        child: Column(
+          children: [
+            const SizedBox(height: 8),
+            ...widget.photoModels.map(
+              (photoModel) => PhotoListItem(photoModel: photoModel),
+            ),
+            const SizedBox(height: 8),
+          ],
+        ),
       ),
+      //child: ListView.builder(
+      //  controller: widget.scrollController,
+      //  padding: const EdgeInsets.all(8),
+      //  itemCount: widget.photoModels.length,
+      //  itemBuilder: (context, index) =>
+      //      PhotoListItem(photoModel: widget.photoModels[index]),
+      //),
     );
   }
 }
