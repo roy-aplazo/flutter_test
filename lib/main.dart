@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tech_week_demo/features/animation_example.dart/animation_screen.dart';
+import 'package:tech_week_demo/features/animation_example/animation_screen.dart';
 import 'package:tech_week_demo/features/list_example/list_example_screen.dart';
 
 void main() {
