@@ -36,13 +36,6 @@ class _PhotoListState extends State<PhotoList> {
           ],
         ),
       ),
-      //child: ListView.builder(
-      //  controller: widget.scrollController,
-      //  padding: const EdgeInsets.all(8),
-      //  itemCount: widget.photoModels.length,
-      //  itemBuilder: (context, index) =>
-      //      PhotoListItem(photoModel: widget.photoModels[index]),
-      //),
     );
   }
 }

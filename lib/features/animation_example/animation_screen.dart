@@ -1,4 +1,3 @@
-import 'dart:isolate';
 import 'package:flutter/material.dart';
 
 class AnimationScreen extends StatefulWidget {
@@ -20,13 +19,11 @@ class _AnimationScreenState extends State<AnimationScreen>
   void initState() {
     super.initState();
 
-    // Controlador para la rotación
     _rotationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
     )..repeat();
 
-    // Controlador para la traslación (movimiento)
     _translationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 3),
@@ -43,7 +40,7 @@ class _AnimationScreenState extends State<AnimationScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Demostración de Isolates')),
+      appBar: AppBar(title: const Text('Animation Example')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -101,7 +98,7 @@ class _AnimationScreenState extends State<AnimationScreen>
                 ElevatedButton(
                   onPressed: _isCalculating
                       ? null
-                      : () => _calculatePrimesInMainThread(),
+                      : () => _calculatePrimesValue(),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
                     foregroundColor: Colors.white,
@@ -110,21 +107,7 @@ class _AnimationScreenState extends State<AnimationScreen>
                       vertical: 16,
                     ),
                   ),
-                  child: const Text('Calcular en\nMain Thread'),
-                ),
-                ElevatedButton(
-                  onPressed: _isCalculating
-                      ? null
-                      : () => _calculatePrimesInIsolate(),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 16,
-                    ),
-                  ),
-                  child: const Text('Calcular en\nIsolate'),
+                  child: const Text('Calculate Primes'),
                 ),
               ],
             ),
@@ -139,8 +122,7 @@ class _AnimationScreenState extends State<AnimationScreen>
     );
   }
 
-  // Calcular números primos en el main thread (bloquea la animación)
-  Future<void> _calculatePrimesInMainThread() async {
+  Future<void> _calculatePrimesValue() async {
     setState(() {
       _isCalculating = true;
       _result = 'Calculando en Main Thread...';
@@ -159,27 +141,6 @@ class _AnimationScreenState extends State<AnimationScreen>
     });
   }
 
-  // Calcular números primos en un isolate (no bloquea la animación)
-  Future<void> _calculatePrimesInIsolate() async {
-    setState(() {
-      //_isCalculating = true;
-      _result = 'Calculando en Isolate...';
-    });
-
-    final stopwatch = Stopwatch()..start();
-    final primes = await Isolate.run(() => _calculatePrimes());
-    stopwatch.stop();
-
-    setState(() {
-      //_isCalculating = false;
-      _result =
-          'Encontrados ${primes.length} números primos\n'
-          'Tiempo: ${stopwatch.elapsedMilliseconds}ms\n'
-          '✅ La animación siguió fluida';
-    });
-  }
-
-  // Función pesada: calcular números primos hasta un límite
   static List<int> _calculatePrimes() {
     final int limit = 4000000;
     final List<int> primes = [];
@@ -204,7 +165,6 @@ class _AnimationScreenState extends State<AnimationScreen>
   }
 }
 
-// Custom painter para dibujar el cuadrado animado
 class SquarePainter extends CustomPainter {
   final double rotation;
   final double translation;
