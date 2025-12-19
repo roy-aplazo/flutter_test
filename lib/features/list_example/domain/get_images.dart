@@ -12,8 +12,4 @@ class GetImages {
   Future<List<PhotoModel>> _getImagesLocal() async {
     return ListData.photoModels;
   }
-
-  Future<List<PhotoModel>> _getImagesRemote() async {
-    return await unsplashService.getRandomPhotos();
-  }
 }
